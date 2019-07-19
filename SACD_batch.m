@@ -30,18 +30,24 @@ fileNames = {dirOutput.name}'
 
 endName='_PostSACD.tif';
 
-I = imread(fileNames{1});
+
+
+
+for i = 1:length(fileNames)
+    
+InputFile{i} = fullfile(fileFolder,fileNames{i}); 
+
+I = imread(InputFile{i});
 imshow(I);
 text(size(I,2),size(I,1)+15, ...
     'Image files courtesy of Alan Partin', ...
     'FontSize',7,'HorizontalAlignment','right');
 text(size(I,2),size(I,1)+25, ....
     'Johns Hopkins University', ...
-    'FontSize',7,'HorizontalAlignment','right');
-
-for i = 1:length(fileNames)
+    'FontSize',7,'HorizontalAlignment','right');    
     
-FileTif=fileNames{i};
+    
+FileTif=InputFile{i};
 InfoImage=imfinfo(FileTif);
 mImage=InfoImage(1).Width;
 nImage=InfoImage(1).Height;
@@ -66,10 +72,10 @@ TifLink.close();
 %order     Auto-correlation cumulant order  {example:2}
 
 
-image=SACD_recon(HDT(:,:,1:40),1.15,247*10^-9,647*10^-9,1,5,2,3);
+image=SACD_recon(HDT(:,:,1:5),1.15,247*10^-9,647*10^-9,1,5,2,3);
 image2 = imadjust(image)
 imshow(image2,'Colormap',hot,'border','tight','initialmagnification','fit')
-ExportName = fullfile(fileFolder,[FileTif,endName]);
+ExportName = fullfile([FileTif,endName]);
 
 imwrite(image2, ExportName)
 

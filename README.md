@@ -5,4 +5,8 @@ The code has been modified from the example provided by 2018 Weisong Zhao et al,
 
  https://arxiv.org/abs/1809.07410
  
+ 
+ To use, download SACD here:
  https://github.com/WeisongZhao/SACD
+ 
+ Copy the SACD_Batch.m in the main folder, run in matlab
